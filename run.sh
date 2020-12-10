@@ -1,5 +1,10 @@
 #!/bin/bash
 
-wget https://baktatest.s3.computational.bio.uni-giessen.de/data/demo-fasta.fasta
-/entrypoint.sh "$BaktaEnvConfig"
-/bin/DataStager "$StagerEnvConfig"
+mkdir /data
+mkdir /output
+
+
+/bin/DataStager "$DownloaderEnvConfig"
+/entrypoint.sh "$BaktaEnvConfig" -o /output --tmp_dir /cache -t 4
+tar -czvf results.tar.gz /output
+/bin/DataStager "$UploaderEnvConfig"
