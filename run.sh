@@ -3,8 +3,9 @@
 mkdir /data
 mkdir /output
 
+echo $DownloaderEnvConfig
 
-/bin/DataStager "$DownloaderEnvConfig"
+eval "/bin/DataStager $DownloaderEnvConfig"
 /entrypoint.sh "$BaktaEnvConfig" -o /output --tmp_dir /cache -t 4
 tar -czvf results.tar.gz /output
-/bin/DataStager "$UploaderEnvConfig"
+eval "/bin/DataStager $UploaderEnvConfig"

@@ -16,7 +16,8 @@ spec:
             name: cache-volume
         env:
           - name: DownloaderEnvConfig
-            value: "download -b baktatest -k data/demo-fasta.fasta -d /data -e s3.computational.bio.uni-giessen.de"
+            #value: "download -b baktatest -k data/demo-fasta.fasta -d /data -e s3.computational.bio.uni-giessen.de"
+            value: "download --buckets baktatest,"
           - name: BaktaEnvConfig
             value: "--db /db /demo-fasta.fasta"
           - name: UploaderEnvConfig
